@@ -1,16 +1,10 @@
 import './App.css';
 import axios from 'axios'
 import Fonts from './styling/FontStyles'
-import styled from 'styled-components'
 import StaccIcon from './styling/StaccLogo';
 
 import { useState } from 'react'
 const getUrl = (org) => `https://data.brreg.no/enhetsregisteret/api/enheter/${org}`
-
-const StrongLabel = styled.label`
-  ${Fonts.defaultFont};
-  font-size: 18px;
-`
 
 function App() {
   const [organization, setOrganization] = useState()
@@ -39,9 +33,9 @@ function App() {
         <StaccIcon />
         <form onSubmit={onSubmit}>
           <div style={{ marginBottom: "5px" }}>
-            <StrongLabel>
+            <Fonts.StrongLabel>
               Stacc organisasjonssøk:
-            </StrongLabel>
+            </Fonts.StrongLabel>
           </div>
           <input type='text' placeholder="Search..." value={currentOrgNo} onChange={e => setOrgNo(e.target.value.replace(/\D/g, ''))} />
           <input type="submit" value='Submit' />
