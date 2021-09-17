@@ -3,12 +3,19 @@ import axios from 'axios'
 import Fonts from './styling/FontStyles'
 import styled from 'styled-components'
 import StaccIcon from './styling/StaccLogo';
+import Colors from './styling/Colors';
 
 import { useState } from 'react'
 const getUrl = (org) => `https://data.brreg.no/enhetsregisteret/api/enheter/${org}`
 
 const StrongLabel = styled.label`
-  ${Fonts.defaultFont};
+  font-style: normal;
+  font-weight: normal;
+  font-family: "IBM Plex Sans";
+  color: ${Colors.Grey1};
+
+  @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,500,700");
+  font-size: 12px;
   font-size: 18px;
 `
 
