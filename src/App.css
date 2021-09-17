@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #ECF2FF;
+  background-color: #FAF7FC;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -79,4 +79,9 @@ input[type=submit] {
   font-size: 16px;
   text-align: center;
   padding: 14px 0.5rem 14px 0.5rem;
+}
+
+input[type=submit]:hover {
+  background-color: #872A22;
+  cursor: pointer;
 }

@@ -13,26 +13,25 @@ const StrongLabel = styled.label`
 `
 
 function App() {
-  const [data, setData] = useState()
-  const [currentOrg, setOrg] = useState("917082391")
+  const [organization, setOrganization] = useState()
+  const [currentOrgNo, setOrgNo] = useState("917082391")
 
   const onSubmit = (event) => {
     event.preventDefault();
-    axios.get(getUrl(currentOrg)).then(d => setData(d.data)).catch((err) => console.error(err));
+    axios.get(getUrl(currentOrgNo)).then(d => setOrganization(d.data)).catch((err) => console.error(err));
   }
 
-  const orgData = data ?
+  const orgData = organization ?
     <>
-      <Fonts.Normal>Navn: {data?.navn}</Fonts.Normal>
-      <Fonts.Normal>Land: {data?.forretningsadresse?.land}</Fonts.Normal>
-      <Fonts.Normal>Org type: {data?.organisasjonsform?.kode}</Fonts.Normal>
-      <Fonts.Normal>Stiftet: {data?.stiftelsesdato ? new Date(Date.parse(data?.stiftelsesdato)).toLocaleDateString("no-NO") : ""}</Fonts.Normal>
-      <Fonts.Normal>Ansatte: {data?.antallAnsatte}</Fonts.Normal>
-      <Fonts.Small style={{ fontSize: '12px' }}>{JSON.stringify(data, null, 2)}</Fonts.Small>
+      <Fonts.Normal>Navn: {organization?.navn}</Fonts.Normal>
+      <Fonts.Normal>Land: {organization?.forretningsadresse?.land}</Fonts.Normal>
+      <Fonts.Normal>Org type: {organization?.organisasjonsform?.kode}</Fonts.Normal>
+      <Fonts.Normal>Stiftet: {organization?.stiftelsesdato ? new Date(Date.parse(organization?.stiftelsesdato)).toLocaleDateString("no-NO") : ""}</Fonts.Normal>
+      <Fonts.Normal>Ansatte: {organization?.antallAnsatte}</Fonts.Normal>
+      <Fonts.Small style={{ fontSize: '12px' }}>{JSON.stringify(organization, null, 2)}</Fonts.Small>
     </>
     :
     <></>
-
 
   return (
     <div className="App">
@@ -44,7 +43,7 @@ function App() {
               Stacc organisasjonssøk:
             </StrongLabel>
           </div>
-          <input type='text' placeholder="Search..." value={currentOrg} onChange={e => setOrg(e.target.value.replace(/\D/g, ''))} />
+          <input type='text' placeholder="Search..." value={currentOrgNo} onChange={e => setOrgNo(e.target.value.replace(/\D/g, ''))} />
           <input type="submit" value='Submit' />
         </form>
         {orgData}
