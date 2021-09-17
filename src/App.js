@@ -20,6 +20,17 @@ function App() {
     event.preventDefault();
     axios.get(getUrl(currentOrg)).then(d => setData(d.data)).catch((err) => console.error(err));
   }
+
+  const orgData = data ?
+    <>
+      <Fonts.Normal>Navn: {data?.navn}</Fonts.Normal>
+      <Fonts.Normal>Org type: {data?.organisasjonsform?.kode}</Fonts.Normal>
+      <Fonts.Small style={{fontSize: '12px'}}>{JSON.stringify(data, null, 2)}</Fonts.Small>
+    </>
+    :
+    <></>
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -33,8 +44,7 @@ function App() {
           <input type='text' placeholder="Search..." value={currentOrg} onChange={e => setOrg(e.target.value.replace(/\D/g, ''))} />
           <input type="submit" value='Submit' />
         </form>
-        <Fonts.Large>Navn: {data?.navn}</Fonts.Large>
-        <Fonts.Small style={{fontSize: '12px'}}>{JSON.stringify(data, null, 2)}</Fonts.Small>
+        {orgData}
       </header>
     </div>
   );
