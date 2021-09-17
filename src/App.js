@@ -11,7 +11,7 @@ function App() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    axios.get(getUrl(currentOrg)).then(d => setData(d.data));
+    axios.get(getUrl(currentOrg)).then(d => setData(d.data)).catch((err) => console.error(err));
   }
   return (
     <div className="App">
@@ -22,7 +22,7 @@ function App() {
               Stacc organisasjonssøk:
             </label>
           </div>
-          <input type='text' placeholder="Search..." value={currentOrg} onChange={e => setOrg(e.target.value)} />
+          <input type='text' placeholder="Search..." value={currentOrg} onChange={e => setOrg(e.target.value.replace(/\D/g, ''))} />
           <input type="submit" value='Submit' />
         </form>
         <p>{data?.navn}</p>
