@@ -24,8 +24,11 @@ function App() {
   const orgData = data ?
     <>
       <Fonts.Normal>Navn: {data?.navn}</Fonts.Normal>
+      <Fonts.Normal>Land: {data?.forretningsadresse?.land}</Fonts.Normal>
       <Fonts.Normal>Org type: {data?.organisasjonsform?.kode}</Fonts.Normal>
-      <Fonts.Small style={{fontSize: '12px'}}>{JSON.stringify(data, null, 2)}</Fonts.Small>
+      <Fonts.Normal>Stiftet: {data?.stiftelsesdato ? new Date(Date.parse(data?.stiftelsesdato)).toLocaleDateString("no-NO") : ""}</Fonts.Normal>
+      <Fonts.Normal>Ansatte: {data?.antallAnsatte}</Fonts.Normal>
+      <Fonts.Small style={{ fontSize: '12px' }}>{JSON.stringify(data, null, 2)}</Fonts.Small>
     </>
     :
     <></>
@@ -34,7 +37,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <StaccIcon/>
+        <StaccIcon />
         <form onSubmit={onSubmit}>
           <div style={{ marginBottom: "5px" }}>
             <StrongLabel>
